@@ -1,0 +1,19 @@
+{
+  "name": "matrix42",
+  "version": "1.0.0",
+  "description": "check of knowledge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Todmy/e-shop-test.git"
+  },
+  "author": "Todmy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Todmy/e-shop-test/issues"
+  },
+  "homepage": "https://github.com/Todmy/e-shop-test#readme"
+}
