@@ -14,7 +14,8 @@
   },
   "homepage": "https://github.com/Todmy/e-shop-test#readme",
   "dependencies": {
-    "angular": "1.5.0"
+    "angular": "1.5.0",
+    "ui-router": "^0.2.15"
   },
   "devDependencies": {
     "browserify": "13.0.0",
@@ -31,27 +32,28 @@
   "watch": {
     "build:scripts": "public/src/*.js",
     "build:styles": {
-      "patterns": [ "public/src/sass/" ],
+      "patterns": [
+        "public/src/sass/"
+      ],
       "extensions": "scss"
     },
     "build:markup": {
-      "patterns": [ "public/src/" ],
+      "patterns": [
+        "public/src/"
+      ],
       "extensions": "html"
     }
   },
   "scripts": {
     "postinstall": "npm run dev",
     "clean": "rimraf public/dist/*",
-
     "prerebuild": "npm run clean -s",
     "build": "npm run build:scripts -s && npm run build:styles -s && npm run build:markup -s",
     "build:scripts": "browserify -d public/src/app.js | uglifyjs > public/dist/app.js",
     "build:styles": "node-sass --output-style compressed --importer public/tools/import-css2sass.js -o public/dist/ public/src/resources/sass/app.scss",
     "build:markup": "cp -r public/src/resources/html public/dist/ && cp public/src/index.html public/dist/",
-
     "open:dev": "opener http://localhost:3000",
     "watch": "npm-watch",
-
-    "dev": "npm run open:dev -s & npm run watch -s"
+    "start": "npm run open:dev -s & npm run watch -s"
   }
 }
