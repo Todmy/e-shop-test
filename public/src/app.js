@@ -3,7 +3,7 @@ require('ui-router');
 
 var app = angular.module('app', [ 'ui.router' ])
 app.config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/products');
 
   $stateProvider
   .state('main', {
@@ -20,8 +20,8 @@ app.config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $u
     })
     .state('main.cart', {
       url: '/cart',
-      templateUrl: require('./js/pages/cart-controller.js').inject(app),
-      controller: 'CartCtrl',
+      templateUrl: 'html/cart.html',
+      controller: require('./js/pages/cart-controller.js').inject(app),
       controllerAs: 'cart'
     });
 } ]);

@@ -1,0 +1,25 @@
+#main {
+  .header-logo {
+    img {
+      height: 70px;
+    }
+  }
+
+  .header-description {
+    color: black;
+    font-size: 30px;
+    margin: 15px auto;
+  }
+
+  .header-search {
+    font-size: 15px;
+    margin: 20px auto;
+  }
+
+  .header-cart {
+    img {
+      height: 50px;
+      margin: 10px auto
+    }
+  }
+}

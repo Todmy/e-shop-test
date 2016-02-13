@@ -33,9 +33,10 @@
     "build:scripts": "public/src/*.js",
     "build:styles": {
       "patterns": [
-        "public/src/sass/"
+        "public/src/",
+        "public/src/images/"
       ],
-      "extensions": "scss"
+      "extensions": "scss, jpg"
     },
     "build:markup": {
       "patterns": [
@@ -46,11 +47,13 @@
   },
   "scripts": {
     "postinstall": "npm run dev",
-    "clean": "rimraf public/dist/*",
-    "prerebuild": "npm run clean -s",
+    "prebuild": "rimraf public/dist/* -s",
+    "prebuild:scripts": "rimraf public/dist/app.js -s",
+    "prebuild:styles": "rimraf public/dist/app.css -s",
+    "prebuild:markup": "rimraf public/dist/html -s && rimraf public/dist/index.html -s",
     "build": "npm run build:scripts -s && npm run build:styles -s && npm run build:markup -s",
     "build:scripts": "browserify -d public/src/app.js | uglifyjs > public/dist/app.js",
-    "build:styles": "node-sass --output-style compressed --importer public/tools/import-css2sass.js -o public/dist/ public/src/resources/sass/app.scss",
+    "build:styles": "node-sass --output-style compressed --importer public/tools/import-css2sass.js -o public/dist/ public/src/resources/sass/app.scss && cp -r public/src/resources/images public/dist/",
     "build:markup": "cp -r public/src/resources/html public/dist/ && cp public/src/index.html public/dist/",
     "open:dev": "opener http://localhost:3000",
     "watch": "npm-watch",
