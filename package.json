@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "check of knowledge",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Todmy/e-shop-test.git"
@@ -15,5 +12,46 @@
   "bugs": {
     "url": "https://github.com/Todmy/e-shop-test/issues"
   },
-  "homepage": "https://github.com/Todmy/e-shop-test#readme"
+  "homepage": "https://github.com/Todmy/e-shop-test#readme",
+  "dependencies": {
+    "angular": "1.5.0"
+  },
+  "devDependencies": {
+    "browserify": "13.0.0",
+    "eslint": "2.0.0",
+    "minimist": "1.2.0",
+    "uglify-js": "2.6.1",
+    "minifyify": "7.2.1",
+    "bootstrap": "3.3.6",
+    "rimraf": "latest",
+    "npm-watch": "latest",
+    "opener": "latest",
+    "node-sass": "3.1.x"
+  },
+  "watch": {
+    "build:scripts": "public/src/*.js",
+    "build:styles": {
+      "patterns": [ "public/src/sass/" ],
+      "extensions": "scss"
+    },
+    "build:markup": {
+      "patterns": [ "public/src/" ],
+      "extensions": "html"
+    }
+  },
+  "scripts": {
+    "postinstall": "npm run dev",
+    "clean": "rimraf public/dist/*",
+
+    "prerebuild": "npm run clean -s",
+    "build": "npm run build:scripts -s && npm run build:styles -s && npm run build:markup -s",
+    "build:scripts": "browserify -d public/src/app.js | uglifyjs > public/dist/app.js",
+    "build:styles": "node-sass --output-style compressed --importer public/tools/import-css2sass.js -o public/dist/ public/src/resources/sass/app.scss",
+    "build:markup": "cp -r public/src/resources/html public/dist/ && cp public/src/index.html public/dist/",
+
+    "open:dev": "opener http://localhost:3000",
+    "watch": "npm-watch",
+
+    "dev": "npm run open:dev -s & npm run watch -s"
+  }
 }
