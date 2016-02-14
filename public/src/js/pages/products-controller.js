@@ -3,6 +3,4 @@ exports.inject = function(app) {
   return exports.controller;
 };
 
-exports.controller = function ProductsCtrl($scope) {
-console.log('hello');
-};
+exports.controller = function ProductsCtrl() {};

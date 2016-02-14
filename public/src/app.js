@@ -4,7 +4,7 @@ require('angular-resource');
 require('ui-router');
 var db = require('./backend.js');
 
-var app = angular.module('app', [ 'ui.router', 'ngResource', 'ngMockE2E' ])
+var app = angular.module('app', [ 'ui.router', 'ngResource', 'ngMockE2E' ]);
 app.config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/products');
 
