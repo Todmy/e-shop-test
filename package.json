@@ -17,7 +17,8 @@
     "angular": "1.5.0",
     "angular-mocks": "^1.5.0",
     "angular-resource": "^1.5.0",
-    "ui-router": "^0.2.15"
+    "ui-router": "^0.2.15",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "browserify": "13.0.0",
@@ -32,7 +33,13 @@
     "node-sass": "3.1.x"
   },
   "watch": {
-    "build:scripts": "public/src/*.js",
+    "build:scripts:dev": {
+      "patterns": [
+        "public/src/",
+        "public/src/**/"
+      ],
+      "extensions": "js"
+    },
     "build:styles": {
       "patterns": [
         "public/src/",
@@ -48,16 +55,16 @@
     }
   },
   "scripts": {
-    "postinstall": "npm run dev",
     "prebuild": "rimraf public/dist/* -s",
     "prebuild:scripts": "rimraf public/dist/app.js -s",
     "prebuild:styles": "rimraf public/dist/app.css -s",
     "prebuild:markup": "rimraf public/dist/html -s && rimraf public/dist/index.html -s",
     "build": "npm run build:scripts -s && npm run build:styles -s && npm run build:markup -s",
+    "build:scripts:dev": "browserify -d public/src/app.js > public/dist/app.js",
     "build:scripts": "browserify -d public/src/app.js | uglifyjs > public/dist/app.js",
-    "build:styles": "node-sass --output-style compressed --importer public/tools/import-css2sass.js -o public/dist/ public/src/resources/sass/app.scss && cp -r public/src/resources/images public/dist/",
-    "build:markup": "cp -r public/src/resources/html public/dist/ && cp public/src/index.html public/dist/",
-    "open:dev": "opener http://localhost:3000",
+    "build:styles": "node-sass --output-style compressed --importer public/tools/import-css2sass.js -o public/dist/ public/src/partials/sass/app.scss && cp -r public/src/partials/images public/dist/",
+    "build:markup": "cp -r public/src/partials/html public/dist/ && cp public/src/index.html public/dist/",
+    "open:dev": "opener http://localhost:3000/public/dist/#/products",
     "watch": "npm-watch",
     "start": "npm run open:dev -s & npm run watch -s"
   }

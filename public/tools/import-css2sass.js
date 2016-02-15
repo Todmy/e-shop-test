@@ -3,7 +3,7 @@ var path = require('path');
 
 var noop = function() {};
 var originalLog = console.log;
-var sassRoot = path.dirname(__dirname) + '/src/resources/sass/';
+var sassRoot = path.dirname(__dirname) + '/src/partials/sass/';
 
 function readCssFile(filePath) {
   var fileFolder = path.dirname(filePath);

@@ -2,9 +2,16 @@ var angular = require('angular');
 require('angular-mocks');
 require('angular-resource');
 require('ui-router');
-var db = require('./backend.js');
+require('ng-storage');
+require('angular-ui-notification');
 
-var app = angular.module('app', [ 'ui.router', 'ngResource', 'ngMockE2E' ]);
+var db = require('./backend');
+
+var app = angular.module('app', [ 'ui.router', 'ngResource', 'ngMockE2E', 'ngStorage', 'ui-notification' ]);
+
+require('./js/resources');
+require('./js/pages');
+
 app.config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/products');
 
@@ -12,19 +19,30 @@ app.config([ '$stateProvider', '$urlRouterProvider', function($stateProvider, $u
     .state('main', {
       abstract: true,
       templateUrl: 'html/main.html',
-      controller: require('./js/pages/main-controller.js').inject(app),
+      controller: 'MainCtrl',
       controllerAs: 'main'
     })
       .state('main.products', {
         url: '/products',
         templateUrl: 'html/products.html',
-        controller: require('./js/pages/products-controller.js').inject(app),
+        controller: 'ProductsCtrl',
         controllerAs: 'products'
       })
       .state('main.cart', {
         url: '/cart',
         templateUrl: 'html/cart.html',
-        controller: require('./js/pages/cart-controller.js').inject(app),
+        controller: 'CartCtrl',
         controllerAs: 'cart'
       });
-} ]).run(db);
+} ])
+.config(function(NotificationProvider) {
+  NotificationProvider.setOptions({
+    delay: 10000,
+    startTop: 20,
+    startRight: 10,
+    verticalSpacing: 20,
+    horizontalSpacing: 20,
+    positionX: 'left',
+    positionY: 'bottom'
+  });
+}).run(db);

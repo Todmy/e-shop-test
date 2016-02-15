@@ -1,6 +1,4 @@
-exports.inject = function(app) {
-  app.controller('MainCtrl', exports.controller);
-  return exports.controller;
-};
+'use strict';
 
-exports.controller = function MainCtrl() {};
+module.exports = function() {
+};
